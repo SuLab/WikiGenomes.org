@@ -1,0 +1,14 @@
+html, body {
+
+    height: 100%;
+}
+
+.main-landing-page {
+    background-color: #385d94;
+    color: whitesmoke;
+    border: solid #385d94 3px;
+    text-align: center;
+    min-height:100%;
+    padding-top: 50px;
+
+}
