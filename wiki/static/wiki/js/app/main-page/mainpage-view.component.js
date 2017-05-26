@@ -178,12 +178,12 @@ angular
                                 });
                                 // This gets server side mongodb annotations.  Nested in GO Terms function because of AJAX
                                 // issues waiting for EC Number.  NEED to refactor so it can be called outside of this.
-                                var annotation_keys = {
-                                    locusTag: ctrl.currentGene.locusTag,
-                                    taxid: ctrl.currentGene.taxid,
-                                    ec_number: ctrl.annotations.ecnumber
-                                };
-                                getServerAnnotationData(annotation_keys);
+                                //var annotation_keys = {
+                                //    locusTag: ctrl.currentGene.locusTag,
+                                //    taxid: ctrl.currentGene.taxid,
+                                //    ec_number: ctrl.annotations.ecnumber
+                                //};
+                                //getServerAnnotationData(annotation_keys);
                             });
                     });
 
@@ -192,19 +192,19 @@ angular
 
                 });
 
-                ////send fo rm data to server to edit wikidata
-                var getServerAnnotationData = function (anno_keys) {
-                    var url_suf = $location.path() + '/mg_mutant_view';
-
-                    sendToView.sendToView(url_suf, anno_keys).then(function (data) {
-                        ctrl.annotations.mutants = {
-                            mutants: data.data.mutants,
-                            refseq: ctrl.currentGene.refseqGenome
-                        };
-                        ctrl.annotations.reactions = data.data.reactions;
-                        console.log(ctrl.annotations.mutants);
-                    });
-                };
+                //////send fo rm data to server to edit wikidata
+                //var getServerAnnotationData = function (anno_keys) {
+                //    var url_suf = $location.path() + '/mg_mutant_view';
+                //
+                //    sendToView.sendToView(url_suf, anno_keys).then(function (data) {
+                //        ctrl.annotations.mutants = {
+                //            mutants: data.data.mutants,
+                //            refseq: ctrl.currentGene.refseqGenome
+                //        };
+                //        ctrl.annotations.reactions = data.data.reactions;
+                //        console.log(ctrl.annotations.mutants);
+                //    });
+                //};
 
 
             };
