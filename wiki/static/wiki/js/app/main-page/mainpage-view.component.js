@@ -37,6 +37,10 @@ angular
                     ctrl.orgList = data;
                     ctrl.currentOrg = $filter('getJsonItemOrg')('taxid', ctrl.currentTaxid, ctrl.orgList);
                     ctrl.genus = ctrl.currentOrg.taxonLabel.split(' ');
+                    linkedPubs.getLinkedPubs(ctrl.currentLocusTag, ctrl.genus[0]).then(function (data) {
+                          ctrl.annotations.pubList = data.data.resultList.result;
+                        });
+                    console.log(ctrl.genus);
                     if (ctrl.currentOrg == undefined) {
                         alert("not a valid taxonomy id");
                         $location.path('/');
@@ -118,12 +122,8 @@ angular
                             ctrl.annotations.orthologs = ctrl.currentOrtholog;
                         });
 
-                        // Get related publications from eutils
 
 
-                        linkedPubs.getLinkedPubs(ctrl.currentLocusTag, ctrl.genus[0]).then(function (data) {
-                            ctrl.annotations.pubList = data.data.resultList.result;
-                        });
 
                         // Get InterPro Domains from Wikidata SPARQL
                         InterPro.getInterPro(ctrl.currentGene.uniprot).then(
