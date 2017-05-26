@@ -20,26 +20,14 @@
         overflow: auto;
     }
 
-    .stroke_ol {
-        color: whitesmoke;
-        text-shadow: -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000;
-    }
-
-    .bgimg {
-        background-image: url('../../img/Hpylori2.png');
-    }
-
 </style>
 
 <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header bgimg">
+        <div  class="navbar-header">
             <a style="color: whitesmoke" class="navbar-brand" href="/">
-                <h1 class="stroke_ol">WikGenomes</h1>
+                <h1 class="stroke_ol logo_overlay">WikGenomes</h1>
             </a>
         </div>
 
@@ -48,7 +36,7 @@
             <form class="navbar-form navbar-left form-group form-inline">
                 <organism-form orgs="$ctrl.orgList"></organism-form>
                 <gene-form taxid="$ctrl.currentTaxid"></gene-form>
-                <keyword-form></keyword-form>
+                <!--<keyword-form></keyword-form>-->
             </form>
 
             <oauth-view style="float:right"></oauth-view>

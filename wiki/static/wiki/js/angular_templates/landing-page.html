@@ -2,7 +2,10 @@
     html, body {
         background-color: #385d94;
     }
-    a {color: whitesmoke}
+
+    a {
+        color: #99c2ff
+    }
 </style>
 <div class="container-fluid main-landing-page">
     <div class="row">
@@ -41,6 +44,165 @@
         <div class="col-md-6"><img id="hpylori" src="static/wiki/img/Hpylori2.png"></div>
         <div class="col-md-3"></div>
     </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <ul id="footerList" class="nav nav-pills">
+            <li class="col-xs-2"><a data-target="#aboutWG" data-toggle="modal">About WikiGenomes</a></li>
+            <li class="col-xs-2"><a data-target="#help" data-toggle="modal">Help</a></li>
+            <li class="col-xs-2"><a data-target="#code" data-toggle="modal">Source</a></li>
+            <li class="col-xs-2"><a data-target="#licensing" data-toggle="modal">Terms of Use</a></li>
+            <li class="col-xs-2"><a data-target="#contact" data-toggle="modal">Contact</a></li>
+        </ul>
+        <div class="col-xs-1"></div>
+    </div>
+
+
 </div>
 
+<!-- Modal -->
+<div id="aboutWG" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">About WikiGenomes</h4>
+            </div>
+            <div class="modal-body">
+                <h4>WikiGenomes</h4>
+
+                <p>WikiGenomes is a portal to the biological content in the <a href="wikidata.org">Wikidata</a> project.
+                    It currently hosts the genes, proteins, and a variety of functional annotations for 120
+                    bacteria genomes.
+                    WikiGenomes is designed to be both a resource for basic researchers to browse the collective
+                    knowledge of a variety of
+                    well studied organisms, and a technology layer that allows the user to add to that collective
+                    knowledge. To support this
+                    WikiGenomes provides defined editing forms that prompt the user to provide key information and
+                    references. WikiGenomes
+                    then adds that knowledge to the <a href="wikidata.org">Wikidata</a> knowledge graph.
+                </p>
+
+                <h4>Publication </h4>
+
+                <p style="color:#385d94">For more information about WikiGenomes read our publication in DATABASE:</p>
+                <a target="_blank" href="https://academic.oup.com/database/article-lookup/doi/10.1093/database/bax025">
+                    Tim E. Putman Sebastien Lelong, Sebastian Burgstaller-Muehlbacher, Andra Waagmeester, Colin Diesh,
+                    Nathan Dunn, Monica
+                    Munoz-Torres, Gregory S. Stupp, Chunlei Wu, Andrew I. Su, and Benjamin M. Good. 2017. <strong>“WikiGenomes:
+                    An Open Web Application for
+                    Community Consumption and Curation of Gene Annotation Data in Wikidata.” Database 2017 (March).
+                    doi:10.1093/database/baw028.</strong>
+                </a>
+
+                <h4>Related Projects</h4>
+                <a href="https://en.wikipedia.org/wiki/Portal:Gene_Wiki">Gene Wiki</a><br>
+                <a href="https://www.wikidata.org/wiki/Wikidata:WikiProject_Molecular_biology">Wikidata Project
+                    Molecular Biology</a><br>
+                <a href="https://www.wikidata.org/wiki/Wikidata:WikiProject_Microbiology">Wikidata Project
+                    Microbiology</a><br>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="help" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Help</h4>
+            </div>
+            <div class="modal-body">
+                <p>Walkthrough video available <a
+                        href="https://drive.google.com/open?id=0Bz6pVfjuj2bhWUR6emFIUy1PNVk"><u>here</u></a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="code" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Source Code</h4>
+            </div>
+            <div class="modal-body">
+                <p>Source code is available to clone here: <a href="https://github.com/putmantime/CMOD.Django">WikiGenomes
+                    Source Code</a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="licensing" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Terms of Use</h4>
+            </div>
+            <div class="modal-body">
+                <p>Most of the data hosted in WikiGenomes and <a href="wikidata.org">Wikidata</a> are <a
+                        href="https://wiki.creativecommons.org/wiki/CC0">CC-0 Public Domain</a>. The only exception is
+                    the enzyme reactions,
+                    which come from <a href="http://enzyme.expasy.org/">Expasy Enzyme</a> and are subject to their terms
+                    of use: <a href="http://enzyme.expasy.org/enzuser.txt">Expasy User Manual</a></p>.
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="contact" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Contact Information</h4>
+            </div>
+            <div class="modal-body">
+                <p><strong>Contact us</strong><br><br>
+
+                    <strong>Our mailing address is:</strong><br>
+                    The Scripps Research Institute<br>
+                    MEM-216<br>
+                    10550 North Torrey Pines Road<br>
+                    La Jolla, CA 92037<br><br>
+                    <strong>The Su Lab is physically located at the following location: </strong><br>
+                    Molecular and Experimental Medicine Building<br>
+                    MEM-216<br>
+                    3545 Cray Court<br>
+                    La Jolla, CA 92121</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
