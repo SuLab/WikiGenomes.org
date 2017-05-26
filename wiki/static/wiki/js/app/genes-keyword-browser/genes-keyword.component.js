@@ -1,7 +1,7 @@
 angular
     .module('genesKeyword')
     .component('genesKeyword', {
-        controller: function ($location, $filter, allChlamOrgs, allChlamydiaGenes) {
+        controller: function ($location, $filter, allOrgs, allChlamydiaGenes) {
             var ctrl = this;
 
             ctrl.$onInit = function () {
@@ -9,7 +9,7 @@ angular
                 ctrl.chlamGenes = {};
                 ctrl.keyword = $location.path().split("/")[2];
                 ctrl.orgData = [];
-                allChlamOrgs.getAllOrgs(function (data) {
+                allOrgs.getAllOrgs(function (data) {
                     angular.forEach(data, function (value) {
                         value.check = true;
                         ctrl.orgData.push(value);

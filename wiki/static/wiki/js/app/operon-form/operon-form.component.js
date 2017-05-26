@@ -1,7 +1,7 @@
 angular
     .module('operonForm')
     .component('operonForm', {
-        controller: function ($routeParams, $location, $filter, pubMedData, locusTag2QID, allOrgGenes, allOrgOperons, allChlamOrgs,
+        controller: function ($routeParams, $location, $filter, pubMedData, locusTag2QID, allOrgGenes, allOrgOperons, allOrgs,
                               sendToView) {
             var ctrl = this;
             ctrl.$onInit = function () {
@@ -35,7 +35,7 @@ angular
                         ctrl.allOrgGenes = data.data.results.bindings;
                     });
 
-                    allChlamOrgs.getAllOrgs(function (data) {
+                    allOrgs.getAllOrgs(function (data) {
                         ctrl.orgList = data;
                         ctrl.opFormModel.organism = $filter('getJsonItemOrg')('taxid', ctrl.currentTaxid,
                             ctrl.orgList);

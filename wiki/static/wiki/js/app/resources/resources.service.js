@@ -16,20 +16,6 @@ angular
 
 angular
     .module('resources')
-    .factory('allChlamOrgs', function ($resource) {
-        var url = '/static/wiki/json/chlamsOrgList.json';
-        return $resource(url, {}, {
-            getAllOrgs: {
-                method: "GET",
-                params: {},
-                isArray: true,
-                cache: true
-            }
-        });
-    });
-
-angular
-    .module('resources')
     .factory('evidenceCodes', function ($resource) {
         var url = '/static/wiki/json/evidence_codes.json';
         return $resource(url, {}, {
@@ -185,6 +171,36 @@ angular
             getAllOrgGenes: getAllOrgGenes
         }
     });
+
+angular
+    .module('resources')
+    .factory('allOrgGenes2', function ($http) {
+        var endpoint = 'https://query.wikidata.org/sparql?format=json&query=';
+        var getAllOrgGenes = function (taxid) {
+            var query = "SELECT ?gene ?geneLabel ?entrez ?locusTag ?aliases " +
+                    "WHERE { " +
+                    "?taxon wdt:P685 '{taxid}'. " +
+                    "?gene wdt:P279 wd:Q7187;" +
+                    "wdt:P703 ?taxon;" +
+                    "wdt:P351 ?entrez;" +
+                    "wdt:P2393 ?locusTag;" +
+                    "wdt:P688 ?protein;" +
+                    "skos:altLabel ?aliases." +
+                    "SERVICE wikibase:label {bd:serviceParam wikibase:language 'en' .}}".replace('{taxid}', taxid);
+            var url = endpoint + encodeURIComponent(query);
+            return $http.get(url)
+                .success(function (response) {
+                    return response
+                })
+                .error(function (response) {
+                    return response
+                })
+        };
+        return {
+            getAllOrgGenes: getAllOrgGenes
+        }
+    });
+
 
 angular
     .module('resources')
@@ -385,10 +401,12 @@ var url = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=CT681&re
 
 angular
     .module('resources')
-    .factory('locusTag2Pub', function ($http) {
-        var getlocusTag2Pub = function (val) {
-            var endpoint = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=chlamydia%20{locusTag}&format=json';
-            var url = endpoint.replace('{locusTag}', val);
+    .factory('linkedPubs', function ($http) {
+        var getLinkedPubs = function (locus_tag, organism_name) {
+            var endpoint = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search?query={organism}%20{locusTag}&format=json';
+            var url1 = endpoint.replace('{locusTag}', locus_tag);
+            var url = url1.replace('{organism}', organism_name);
+            console.log(url);
             return $http.get(url)
                 .success(function (response) {
                     return response;
@@ -398,7 +416,7 @@ angular
                 });
         };
         return {
-            getlocusTag2Pub: getlocusTag2Pub
+            getLinkedPubs: getLinkedPubs
         }
     });
 
