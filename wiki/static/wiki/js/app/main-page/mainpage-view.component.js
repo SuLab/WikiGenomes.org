@@ -36,7 +36,7 @@ angular
                 allOrgs.getAllOrgs(function (data) {
                     ctrl.orgList = data;
                     ctrl.currentOrg = $filter('getJsonItemOrg')('taxid', ctrl.currentTaxid, ctrl.orgList);
-                    console.log(ctrl.currentOrg);
+                    ctrl.genus = ctrl.currentOrg.taxonLabel.split(' ');
                     if (ctrl.currentOrg == undefined) {
                         alert("not a valid taxonomy id");
                         $location.path('/');
@@ -67,6 +67,7 @@ angular
                         ctrl.currentGene.refseqGenome = entity.claims.P644[0].qualifiers.P2249[0].datavalue.value;
                         ctrl.currentGene.geneType = entity.claims.P279[0].mainsnak.datavalue.value;
                         ctrl.currentGene.geneAliases = [];
+
                         angular.forEach(entity.aliases.en, function (alias) {
                             if (alias.value != ctrl.currentGene.locusTag) {
                                 ctrl.currentGene.geneAliases.push(alias.value);
@@ -118,9 +119,9 @@ angular
                         });
 
                         // Get related publications from eutils
-                        var genus = ctrl.currentOrg.taxonLabel.split(' ');
 
-                        linkedPubs.getLinkedPubs(ctrl.currentLocusTag, genus[0]).then(function (data) {
+
+                        linkedPubs.getLinkedPubs(ctrl.currentLocusTag, ctrl.genus[0]).then(function (data) {
                             ctrl.annotations.pubList = data.data.resultList.result;
                         });
 
