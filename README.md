@@ -14,6 +14,6 @@ doi:10.1093/database/baw028.] (https://academic.oup.com/database/article-lookup/
 
 Related Projects
 
-[Gene Wiki] (https://en.wikipedia.org/wiki/Portal:Gene_Wiki)
-[Wikidata Project Molecular Biology] (https://www.wikidata.org/wiki/Wikidata:WikiProject_Molecular_biology)
-[Wikidata Project Microbiology] (https://www.wikidata.org/wiki/Wikidata:WikiProject_Microbiology)
+[Gene Wiki](https://en.wikipedia.org/wiki/Portal:Gene_Wiki)
+[Wikidata Project Molecular Biology](https://www.wikidata.org/wiki/Wikidata:WikiProject_Molecular_biology)
+[Wikidata Project Microbiology](https://www.wikidata.org/wiki/Wikidata:WikiProject_Microbiology)
