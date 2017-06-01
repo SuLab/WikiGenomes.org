@@ -5,7 +5,7 @@
 
     <tr ng-repeat="x in $ctrl.data">
         <td title="'GO Term'">
-            {{x.gotermValueLabel.value }}
+            {{ x.gotermValueLabel.value }}
         </td>
         <td title="'Evidence'">
             {{ x.determinationLabel.value }}
@@ -46,7 +46,8 @@
         </td>
     </tr>
 </table>
-<button type="button" class="btn btn-default" data-toggle="modal"
+
+<button  ng-show="$ctrl.auth" type="button" class="btn btn-default" data-toggle="modal"
         data-target="#{{ $ctrl.goclass }}_button">
     Add an annotation
 </button>

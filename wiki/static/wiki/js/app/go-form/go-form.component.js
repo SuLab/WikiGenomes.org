@@ -3,10 +3,10 @@ angular
     .component('goForm', {
         controller: function ($routeParams, $filter, $location, evidenceCodes, sendToView, pubMedData, allGoTerms, locusTag2QID) {
             var ctrl = this;
+
             ctrl.$onInit = function () {
                 ctrl.currentTaxid = $routeParams.taxid;
                 ctrl.currentLocusTag = $routeParams.locusTag;
-
                 locusTag2QID.getLocusTag2QID(ctrl.currentLocusTag, ctrl.currentTaxid).then(function (data) {
 
                     ctrl.geneQID = $filter('parseQID')(data.data.results.bindings[0].gene.value);
@@ -68,7 +68,7 @@ angular
                                 return data.data.results.bindings.map(function (item) {
                                     return item;
                                 });
-                            }).finally(function(){
+                            }).finally(function () {
                                 ctrl.goTermLoading = false;
                             }
                         );
@@ -100,14 +100,14 @@ angular
                         var url_suf = $location.path() + '/wd_go_edit';
                         console.log(url_suf);
                         sendToView.sendToView(url_suf, formData).then(function (data) {
-                            if(data.data.write_success === true){
+                            if (data.data.write_success === true) {
                                 alert("Successfully Annotated! Well Done! The annotation will appear here in a few minutes.");
                                 ctrl.resetForm();
                             }
-                            else{
+                            else {
                                 alert("Something went wrong.  Give it another shot!")
                             }
-                        }).finally(function(){
+                        }).finally(function () {
                             ctrl.loading = false;
                         });
 
