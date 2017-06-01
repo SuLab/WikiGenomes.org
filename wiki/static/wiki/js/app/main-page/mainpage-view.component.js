@@ -21,6 +21,7 @@ angular
             // those to make API calls to wikidata.
             var ctrl = this;
             ctrl.$onInit = function () {
+                ctrl.loading = true;
 
                 ctrl.currentTaxid = $routeParams.taxid;
                 ctrl.currentLocusTag = $routeParams.locusTag;
@@ -189,6 +190,7 @@ angular
 
 
                 }).finally(function () {
+                    ctrl.loading = false;
 
                 });
 

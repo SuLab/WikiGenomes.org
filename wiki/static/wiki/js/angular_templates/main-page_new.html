@@ -1,12 +1,12 @@
 <style>
     body {
-        padding-top: 100px;
+        padding-top: 120px;
     }
 
     .container-fluid {
         /*height: 100%;*/
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 20px;
+        padding-bottom: 10px;
 
     }
 
@@ -20,26 +20,43 @@
         overflow: auto;
     }
 
-</style>
+    .text_ol {
+        position: absolute;
+        top: 5px;
+        left: 60px;
+        width: 100%;
+    }
 
+</style>
+<div ng-show="$ctrl.loading" class="overlay">
+    <div class="loading-img"></div>
+</div>
 <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div  class="navbar-header">
-            <a style="color: whitesmoke" class="navbar-brand" href="/">
-                <h1 class="stroke_ol logo_overlay">WikGenomes</h1>
-            </a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left form-group form-inline">
-                <organism-form orgs="$ctrl.orgList"></organism-form>
-                <gene-form taxid="$ctrl.currentTaxid"></gene-form>
-                <!--<keyword-form></keyword-form>-->
-            </form>
+        <div class="row">
+            <div class="col-md-3">
+                <div style="margin-left: 10px">
+                    <img style="max-height: 60px; max-width:120px" id="hpy_logo" src="/static/wiki/img/Hpylori2.png"
+                         alt="/">
+                    <a class="text_ol" style="color: whitesmoke" href="/">
+                        <h1 class="logo_overlay">WikiGenomes</h1>
+                    </a>
+                </div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-md-9    ">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <form class="navbar-form navbar-left form-group form-inline">
+                        <organism-form orgs="$ctrl.orgList"></organism-form>
+                        <gene-form taxid="$ctrl.currentTaxid"></gene-form>
+                        <!--<keyword-form></keyword-form>-->
+                    </form>
 
-            <oauth-view style="float:right"></oauth-view>
+                    <oauth-view style="float:right; margin-right: 15px"></oauth-view>
+                </div>
+            </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>
