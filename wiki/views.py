@@ -15,6 +15,7 @@ from scripts.get_mongo_annotations import GetMongoAnnotations
 
 from wikigenomes import oauth_config
 from wikidataintegrator import wdi_login, wdi_core
+from wikidataintegrator.wdi_helpers.publication import PublicationHelper
 
 
 def index(request):
@@ -50,11 +51,10 @@ def go_form(request):
             refs.append(wdi_core.WDItemID(value='Q26489220', prop_nr='P1640', is_reference=True))
             refs.append(wdi_core.WDTime(str(strftime("+%Y-%m-%dT00:00:00Z", gmtime())), prop_nr='P813',
                                         is_reference=True))
-            pmid_url = 'https://tools.wmflabs.org/pmidtool/get_or_create/{}'.format(eutilsPMID)
-            pmid_result = requests.get(url=pmid_url)
-            if pmid_result.json()['success'] == True:
-                refs.append(wdi_core.WDItemID(value=pmid_result.json()['result'], prop_nr='P248', is_reference=True))
-            pprint(pmid_result.json())
+            pub = PublicationHelper(eutilsPMID, 'pmid', 'europepmc')
+            result = pub.get_or_create(login)
+            if len(result) > 0 and result[0]:
+                refs.append(wdi_core.WDItemID(value=result[0], prop_nr='P248', is_reference=True))
             responseData['ref_success'] = True
         except Exception as e:
             responseData['ref_success'] = False
@@ -77,8 +77,7 @@ def go_form(request):
         try:
             # find the appropriate item in wd
             wd_item_protein = wdi_core.WDItemEngine(wd_item_id=body['proteinQID'], domain=None,
-                                                    data=statements, use_sparql=True,
-                                                    append_value=[goProp[goclass]])
+                                                    data=statements, append_value=[goProp[goclass]])
             wd_item_protein.write(login=login)
             responseData['write_success'] = True
 
@@ -116,13 +115,10 @@ def operon_form(request):
             refs.append(wdi_core.WDItemID(value='Q26489220', prop_nr='P1640', is_reference=True))
             refs.append(wdi_core.WDTime(str(strftime("+%Y-%m-%dT00:00:00Z", gmtime())), prop_nr='P813',
                                         is_reference=True))
-            pmid_url = 'https://tools.wmflabs.org/pmidtool/get_or_create/{}'.format(eutilsPMID)
-            pmid_result = requests.get(url=pmid_url)
-            if pmid_result.json()['success'] == True:
-                refs.append(wdi_core.WDItemID(value=pmid_result.json()['result'], prop_nr='P248', is_reference=True))
-            else:
-                return JsonResponse({'pmid': False})
-            pprint(pmid_result.json())
+            pub = PublicationHelper(eutilsPMID, 'pmid', 'europepmc')
+            result = pub.get_or_create(login)
+            if len(result) > 0 and result[0]:
+                refs.append(wdi_core.WDItemID(value=result[0], prop_nr='P248', is_reference=True))
             responseData['ref_success'] = True
         except Exception as e:
             responseData['ref_success'] = False
@@ -147,7 +143,7 @@ def operon_form(request):
             pprint(body['operon']['operonLabel'])
             pprint(operon_statements)
             wd_item_operon = wdi_core.WDItemEngine(item_name=body['operon']['operonLabel']['value'], domain='genes',
-                                                   data=operon_statements, use_sparql=True, append_value=['P527'])
+                                                   data=operon_statements, append_value=['P527'])
             pprint(vars(wd_item_operon))
             wd_item_operon.set_label(body['operon']['operonLabel']['value'])
             wd_item_operon.set_description("Microbial operon found in " + body['organism']['taxonLabel'])
@@ -164,7 +160,7 @@ def operon_form(request):
         for gene in body['genes']:
             try:
                 qid = gene['gene'].split('/')[-1]
-                wd_gene_item = wdi_core.WDItemEngine(wd_item_id=qid, data=gene_statement, use_sparql=True)
+                wd_gene_item = wdi_core.WDItemEngine(wd_item_id=qid, data=gene_statement)
                 wd_gene_item.write(login=login)
                 responseData['gene_write_success'] = True
             except Exception as e:
