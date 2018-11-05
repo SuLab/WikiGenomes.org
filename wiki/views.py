@@ -233,7 +233,7 @@ def wd_oauth(request):
         # parse the url from wikidata for the oauth token and secret
         if 'url' in body.keys():
             authentication = jsonpickle.decode(request.session['authOBJ'])
-            authentication.continue_oauth(oauth_callback_data=body['url'])
+            authentication.continue_oauth(oauth_callback_data=body['url'].encode("utf-8"))
             request.session['login'] = jsonpickle.encode(authentication)
             return JsonResponse(body)
 
